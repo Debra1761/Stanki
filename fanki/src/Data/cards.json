@@ -1,0 +1,103 @@
+{
+    "cards": [
+        {
+            "id": 1,
+            "eng": "What is namespace in Python",
+            "han": "A namespace is a naming system used to make sure that names are unique to avoid naming conflicts"
+        },
+        {
+            "id": 2,
+            "eng": "What is PYTHONPATH?  ",
+            "han": "It is an environment variable which is used when a module is imported. Whenever a module is imported, PYTHONPATH is also looked up to check for the presence of the imported modules in various directories. The interpreter uses it to determine which module to load."
+        },
+        {
+            "id": 3,
+            "eng": "What are python modules? Name some commonly used built-in modules in Python? ",
+            "han": "Python modules are files containing Python code. This code can either be functions classes or variables. A Python module is a .py file containing executable code. "
+        },
+        {
+            "id": 4,
+            "eng": "What is type conversion in Python?",
+            "han": "Type conversion refers to the conversion of one data type iinto another."
+        },
+        {
+            "id": 5,
+            "eng": "What is the difference between Python Arrays and lists",
+            "han": "Arrays and lists, in Python, have the same way of storing data. But, arrays can hold only a single data type elements whereas lists can hold any data type elements."
+        },
+        {
+            "id": 6,
+            "eng": "What are functions in Python",
+            "han": "A function is a block of code which is executed only when it is called. To define a Python function, the def keyword is used"
+        },
+        {
+            "id": 7,
+            "eng": "What is __init__?",
+            "han": "__init__ is a method or constructor in Python. This method is automatically called to allocate memory when a new object/ instance of a class is created. All classes have the __init__ method."
+        },
+        {
+            "id": 8,
+            "eng": "What is a lambda function",
+            "han": "An anonymous function is known as a lambda function. This function can have any number of parameters but, can have just one statement."
+        },
+        {
+            "id": 9,
+            "eng": "tWhat is self in Python",
+            "han": "Self is an instance or an object of a class. In Python, this is explicitly included as the first parameter. However, this is not the case in Java where it’s optional.  It helps to differentiate between the methods and attributes of a class with local variables. The self variable in the init method refers to the newly created object while in other methods, it refers to the object whose method was called."
+        },
+        {
+            "id": 10,
+            "eng": "What does [::-1} do?",
+            "han": "[::-1] is used to reverse the order of an array or a sequence."
+        },
+        {
+            "id": 11,
+            "eng": "What are python iterators?",
+            "han": "Iterators are objects which can be traversed though or iterated upon."
+        }
+    ],
+
+
+
+    "decks": [
+        {
+            "id": 0,
+            "deck_name": "react",
+            "create_at": 1622586841
+        },
+        {
+            "id": 1,
+            "deck_name": "rust",
+            "create_at": 1622586841
+        }
+
+    ],
+
+    "flashcards": {
+        "react": [
+            {
+                "id": 0,
+                "front": "How to store data in react",
+                "back": "this.state"
+                
+            },
+    
+            {
+                "id": 1,
+                "front": "What is the name of the variable that the child receives from the parent",
+                "back": "this.props"
+                
+            }],
+
+        "rust": [
+            {
+            "id": 2,
+            "front": "What is rust used for?",
+            "back": "low level systems programming"
+            
+        }]
+    }
+}
+
+
+
