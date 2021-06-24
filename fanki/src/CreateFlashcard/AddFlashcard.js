@@ -5,6 +5,8 @@ import deck from "./deck.png";
 import done from "./done1.png";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // ES6
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddFlashcard = (props) => {
 
@@ -13,7 +15,9 @@ const AddFlashcard = (props) => {
     const [text_back, setTextBack] = useState("")
     const frontRef = useRef();
     const backRef = useRef();
-
+    const notify = () => {
+        toast.success("Succesfully added flashcard!")}
+        ;
  
     useEffect(() => {
         console.log('use effect is loaded')
@@ -58,8 +62,19 @@ const AddFlashcard = (props) => {
             "front": text_front,
             "back": text_back,
         }
-        tempRef.set(updatedCard);
-        console.log("Added succesfully!", updatedCard)
+        tempRef.set(updatedCard, (error) => {
+            if (error) {
+                console.log(error)
+            }
+            else {
+                console.log("Added succesfully!", updatedCard)
+                notify()
+                setTextFront(null)
+                setTextBack(null)
+                
+            }
+        });
+        
     }
 
 
@@ -127,8 +142,9 @@ const AddFlashcard = (props) => {
                                     <br />
                     <button className="btn" onClick={Addnextcard}>  Add  </button>
                     
-
+                    
             </div>
+            <ToastContainer />
        </div>
         );
 
