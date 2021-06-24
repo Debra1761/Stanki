@@ -11,12 +11,18 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddFlashcard = (props) => {
 
     const [flashcards, setFlashcards] = useState([]);
+
     const [text_front, setTextFront] = useState("")
     const [text_back, setTextBack] = useState("")
+
+    const [raw_text_front, setRawTextFront] = useState("")
+    const [raw_text_back, setRawTextBack] = useState("")
+
     const frontRef = useRef();
     const backRef = useRef();
+
     const notify = () => {
-        toast.success("Succesfully added flashcard!")}
+        toast.success("Flashcard added succesfully!")}
         ;
  
     useEffect(() => {
@@ -41,11 +47,13 @@ const AddFlashcard = (props) => {
 
     const handleChangefront = (value) => {
         setTextFront(value)
-        console.log("front:", frontRef.current.editor)
+        setRawTextFront(frontRef.current.editor.getText())
     }
 
     const handleChangeback = (value) => {
         setTextBack(value)
+        setRawTextBack(backRef.current.editor.getText())
+
     }
 
 
@@ -61,6 +69,8 @@ const AddFlashcard = (props) => {
             "id": key,
             "front": text_front,
             "back": text_back,
+            "frontText": raw_text_front,
+            "backText": raw_text_back
         }
         tempRef.set(updatedCard, (error) => {
             if (error) {

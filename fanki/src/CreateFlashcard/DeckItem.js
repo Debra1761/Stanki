@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import PopupCard from './PopupCard';
 import del from "./del.png";
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class DeckItem extends Component {
     constructor() {
@@ -29,13 +31,22 @@ class DeckItem extends Component {
 
             var dictionary = snapshot.val() 
 
+            if(dictionary) {
             var deckname = Object.keys(dictionary).map(function(key){
                 return dictionary[key];
             });
 
             const numFlashcards = deckname.length;
             this.setState({numFlashcards: numFlashcards})
+        }
+        else {
+            this.setState({numFlashcards: 0})
+        }
         })
+    }
+
+    notification = () => {
+        toast.error(this.props.deck.deck_name+ " deck deleted succesfully!")
     }
 
     parentCallback = (vals) => {
@@ -45,12 +56,14 @@ class DeckItem extends Component {
     onDeleteClick = () => {
         console.log("on delete click", this.props.deck.id)
         this.props.databaseRef.child("decks").child(this.props.deck.id).remove();
+        this.notification()
     }
 
     showcardsnow = () => {
-
         console.log(" new flashcard should appear  ")
     }
+
+        
 
 
 
@@ -61,10 +74,11 @@ class DeckItem extends Component {
         return (
             
             <div style={{"display":"flex", "flexDirection":"row", "padding":"70px","justifyContent":"end"}}onMouseEnter={() => this.setState({showDeleteButton: true})} onMouseLeave={() => this.setState({showDeleteButton: false})}>
-
+                    <ToastContainer />
                         {this.state.showDeleteButton &&                          
-                        <div  style={{"z-index":10000}}>
+                        <div  style={{"zIndex":10000}}>
                             <img  onClick={this.onDeleteClick} style={{ "height": "15px"}} src={del} alt="Create your own flashcards"></img>
+                            
                         </div>
                         }
 

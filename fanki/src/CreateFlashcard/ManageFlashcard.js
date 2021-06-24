@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import done from "./done1.png";
 import del from "./del.png";
@@ -9,7 +9,8 @@ import UpdateFlashcard from './UpdateFlashcard'
 import { RemoveIcon, EditIcon } from 'evergreen-ui'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // ES6
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ManageFlashcard = (props) => {
 
@@ -17,8 +18,16 @@ const ManageFlashcard = (props) => {
     const [counter, setCounter] = useState(0);
     const [isShown, setIsShown] = useState(false)
     const [selectedFlashcard, setSelectedFlashcard] = useState({});
+
     const [text_front, setTextFront] = useState("")
     const [text_back, setTextBack] = useState("")
+
+    const [raw_text_front, setRawTextFront] = useState("")
+    const [raw_text_back, setRawTextBack] = useState("")
+
+    const frontRef = useRef();
+    const backRef = useRef();
+
     const [ID, setID] = useState("")
 
     const onNextClick = () => {
@@ -61,14 +70,27 @@ const ManageFlashcard = (props) => {
         console.log("on delete click", flashcard.id)
         props.databaseRef.child("flashcards").child(props.match.params.deckname).child(flashcard.id).remove();
         console.log('successfully removed!')
+        notification()
     }
-    
+
+    const notify = () => {
+        toast.success("Fashcard updated succesfully!")}
+        ;
+
+    const notification = () => {
+        toast.error("Fashcard deleted succesfully!")}
+        ;
 
     const onFlashcardRowClick = (flashcard) => {
         console.log("selected flashcard", flashcard)
         setSelectedFlashcard(flashcard)
+
         setTextFront(flashcard.front)
         setTextBack(flashcard.back)
+
+        setRawTextFront(flashcard.frontText)
+        setRawTextBack(flashcard.backText)
+
         setID(flashcard.id)
 
         setIsShown(true)
@@ -79,12 +101,23 @@ const ManageFlashcard = (props) => {
         setIsShown(false)
     }
 
+    function extractContent(html) {
+
+        return new DOMParser().parseFromString(html, "text/html") . 
+            documentElement . textContent;
+    
+    }
+
     const handleChangefront = (value) => {
         setTextFront(value)
+        const rawText = extractContent(value)
+        setRawTextFront(rawText)
     }
 
     const handleChangeback = (value) => {
         setTextBack(value)
+        const rawText = extractContent(value)
+        setRawTextBack(rawText)
     }
 
     const onUpdate = (close) => {
@@ -96,8 +129,11 @@ const ManageFlashcard = (props) => {
             "id": ID,
             "front": text_front,
             "back": text_back,
+            "frontText": raw_text_front,
+            "backText": raw_text_back
         }
         store.update(updatedCard);
+        notify()
         console.log(updatedCard)
 
 
@@ -151,6 +187,7 @@ const ManageFlashcard = (props) => {
 
                         <ReactQuill value={text_front}
                             name='front'
+                            ref={frontRef}
                             modules={modules}
                             formats={formats}
                             onChange={handleChangefront} />
@@ -159,6 +196,7 @@ const ManageFlashcard = (props) => {
                         <p>Back card:</p>
                         <ReactQuill value={text_back}
                             name='back'
+                            ref={backRef}
                             modules={modules}
                             formats={formats}
                             onChange={handleChangeback} />
@@ -191,19 +229,26 @@ const ManageFlashcard = (props) => {
                     <Table.Head>
                         {/* <Table.SearchHeaderCell /> */}
                        
-                        <Table.TextHeaderCell flexBasis={100} flexShrink={0} flexGrow={0}>ID</Table.TextHeaderCell>
+                        <Table.TextHeaderCell flexBasis={100} flexShrink={0} flexGrow={0}>  </Table.TextHeaderCell>
                         <Table.TextHeaderCell flexBasis={400} >Front face</Table.TextHeaderCell>
                         <Table.TextHeaderCell flexBasis={200} >Back face</Table.TextHeaderCell>
                         <Table.TextHeaderCell></Table.TextHeaderCell>
                         
                     </Table.Head>
-                    <Table.Body height={240}>
+                    <Table.Body >
                             {flashcards.map((flashcard) => (
                             <Table.Row key={flashcard.id} isSelectable>
                         
-                                <Table.TextCell flexBasis={100} flexShrink={0} flexGrow={0}>{flashcard.id+1}</Table.TextCell>
-                                <Table.TextCell flexBasis={400} >{flashcard.front}</Table.TextCell>
-                                <Table.TextCell flexBasis={200}>{flashcard.back}</Table.TextCell>
+                                <Table.TextCell flexBasis={100} flexShrink={0} flexGrow={0}></Table.TextCell>
+                                
+                                <Table.TextCell flexBasis={400} > 
+                                    {flashcard.frontText}                                                
+                                </Table.TextCell>
+
+                                <Table.TextCell flexBasis={200} >
+                                    {flashcard.backText}                                                
+                                </Table.TextCell>
+                                
                                 <Table.TextCell>
                                     
                                         <img onClick={() => onFlashcardRowClick(flashcard)} style={{ "height": "20px", "width": "20px","padding":"15px"}} src={edit}  alt="edit"></img>
@@ -215,10 +260,10 @@ const ManageFlashcard = (props) => {
                     </Table.Body>
                     </Table>
 
-
+                    <ToastContainer />
             
                 </div>
-          
+               
       </div>
     );
   
