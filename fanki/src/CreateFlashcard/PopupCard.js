@@ -14,6 +14,7 @@ class PopupCard extends Component {
             ExistingDeck: ["React", "Python", "Rust"],
             NewDeck: [],
             NewDeckValue: "",
+            Desc : "",
             optionSelected: null
         };
         this.onChangeValue = this.onChangeValue.bind(this);
@@ -36,6 +37,10 @@ class PopupCard extends Component {
     NewDeckisChecked = (event) => {
         this.setState({ optionSelected: event.target.value })
         console.log("NewDeckisChecked clicked")
+    }
+    SaveDescValue = (event) =>{
+        this.setState({Desc: event.target.value })
+
     }
     onCreateClick = () => {
         console.log("button clicked")
@@ -61,10 +66,6 @@ class PopupCard extends Component {
         }
         else {
 
-            console.log('this matters')
-            console.log(this.props.decks)
-            console.log(this.state.NewDeckValue)
-
             if (this.props.decks.includes(this.state.NewDeckValue)) {
                 alert("Deck already exists")
             }
@@ -80,9 +81,8 @@ class PopupCard extends Component {
     CreateButton = () => {
         this.referenc.current.close()
         const updatedArray = [...this.state.ExistingDeck, this.state.NewDeckValue]
-        console.log(updatedArray)
         this.setState({ ExistingDeck: updatedArray })
-        console.log(this.state.ExistingDeck)
+
         
         
         var newChildRef = this.props.databaseRef.child("decks").push();
@@ -91,7 +91,8 @@ class PopupCard extends Component {
         var deckObject = {
             "id": key,
             "deck_name": this.state.NewDeckValue,
-            create_at: Date.now()
+            create_at: Date.now(),
+            "description": this.state.Desc
         }
 
         newChildRef.set(deckObject);
@@ -103,23 +104,22 @@ class PopupCard extends Component {
 
     render() {
         return (
-            <div className="btn-custom1 "  style={{ "display": "flex", "flexDirection": "row", "color": "red", "marginLeft": "200px" ,"padding":"10px","marginRight":"25px"}}>
+            <div>
                 {/* {this.state.ExistingDeck} */}
-                <Popup ref={this.referenc} trigger={<button style={{ "display": "flex", "flexDirection": "row", "height": "100px", "width":"85px","padding": "10px", "color": "white", "backgroundColor": "#429777" , "borderRadius":"10px","border":"none"}}>
+                <Popup ref={this.referenc} trigger={
 
-                    <img style={{ "height": "40px","align-self":"center","marginLeft":"15px"}} src={deck_add} alt="Create your own flashcards"></img>
+                    <img style={{ "height": "45px","width":"45px"}} src={deck_add} alt="Create your own flashcards"></img>
                     
 
-                        </button>} position="bottom right" closeOnDocumentClick>
+                        } position="bottom right" closeOnDocumentClick>
                     <div style={{"padding":"20px"}}>
                         
 
-                                            <input style={{"height":"25px","width":"150px"}} type="text" placeholder="Enter the deck name!" onChange={this.SaveInputValue}></input>
+                                    <input style={{"height":"25px","width":"150px"}} type="text" placeholder="Enter the deck name!" onChange={this.SaveInputValue}></input>
+                                    <input style={{"height":"55px","width":"150px", "marginTop":"20px"}} type="text" placeholder="Description" onChange={this.SaveDescValue}></input>
 
-                                    
                                 <button onClick={this.CheckBeforeCreating} className="btn btn-default" type="submit">
-                                    Create
-                                                    {/* {this.state.NewDeckValue} */}
+                                    Create                                                   {/* {this.state.NewDeckValue} */}
                                 </button>
 
                     </div>

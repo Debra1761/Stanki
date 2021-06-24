@@ -62,18 +62,15 @@ class CreateFlashcard extends Component {
         console.log(this.state.decks)
 
         return (
-            <div style={{ "display": "flex", "flexDirection": "row", "color": "red"}}>
-                <div style={{ "display": "flex", "flexDirection": "row"}}>
+            <div style={{"display":"flex", "flexDirection":"row","textAlign":"-webkit-end", "marginLeft":"270px"}}>                            
+                            
+                            <div>
+                                <PopupCard decks={this.state.deckNames} parentCallback={this.parentCallback} databaseRef={this.props.app.database(this.databaseUrl).ref()}/>
+                            </div>
 
-                            <PopupCard decks={this.state.deckNames} parentCallback={this.parentCallback} databaseRef={this.props.app.database(this.databaseUrl).ref()}/>
-          
-                    {this.state.decks && this.state.decks.map((deck) => <  DeckItem key={deck["id"]} databaseRef={this.props.app.database(this.databaseUrl).ref()} deck={deck}/>)}
-                
-
-                </div>
-
-                        {/* <AddFlashcard/> */}
-
+                            <div>
+                                {this.state.decks && this.state.decks.map((deck) => <  DeckItem key={deck["id"]} databaseRef={this.props.app.database(this.databaseUrl).ref()} deck={deck}/>)}
+                            </div>                                           
             </div>
         );
 

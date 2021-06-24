@@ -36,7 +36,6 @@ class HomePage extends Component {
     // this.app = firebase.initializeApp(DB_CONFIG);
 
     // this.app = this.props.app ;
-    console.log('app:', this.app)
 
     const databaseUrl = "https://optimal-iris-238613-default-rtdb.europe-west1.firebasedatabase.app/"
 
@@ -52,9 +51,9 @@ class HomePage extends Component {
 
   componentWillMount() {
     const currentCards = this.state.cards;
-    console.log("arrived at component will mount")
+
     this.database.child('cards').on('child_added', snap => {
-      console.log("testing to see if this code worked")
+
       currentCards.push({
         id: snap.val().id,
         eng: snap.val().eng,
@@ -83,7 +82,7 @@ class HomePage extends Component {
 
 
   render() {
-    console.log(this.state)
+
     return (
 
 
@@ -95,13 +94,13 @@ class HomePage extends Component {
 
 
         <CardStack />
-        <SearchPage />
+        <SearchPage database = {this.database}/>
 
-        <div style={{ "display": "flex", "flexDirection": "row", "justifyContent": "center", "padding": "10px" }}>
+        <div style={{ "display": "flex", "flexDirection": "row", "justifyContent": "center", "padding": "40px" }}>
           <button className="btn-custom">    <img style={{ "height": "30px" }} src={py} alt="python"></img> python  </button>
           <button className="btn-custom">    <img style={{ "height": "30px" }} src={mysql} alt="python"></img> mysql  </button>
           <button className="btn-custom">    <img style={{ "height": "30px" }} src={js} alt="python"></img> javascript  </button>
-          <button className="btn-custom">    <img style={{ "height": "30px" }} src={java} alt="python"></img> java/</button>
+          <button className="btn-custom">    <img style={{ "height": "30px" }} src={java} alt="python"></img> java  </button>
           <button className="btn-custom">    <img style={{ "height": "30px" }} src={aws} alt="python"></img> aws  </button>
 
 

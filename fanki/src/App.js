@@ -19,6 +19,7 @@ import aws from "./images/aws.png";
 import HomePage from './HomePage';
 import CreateFlashcard from './CreateFlashcard/CreateFlashcard';
 import ShowFlashcard from "./CreateFlashcard/ShowFlashcard";
+import ManageFlashcard from './CreateFlashcard/ManageFlashcard';
 
 
 import {
@@ -49,7 +50,7 @@ class App extends Component {
     // this.app = firebase.initializeApp(DB_CONFIG);
 
     // this.app = this.props.app ;
-    console.log('app:', this.app)
+
 
     const databaseUrl = "https://optimal-iris-238613-default-rtdb.europe-west1.firebasedatabase.app/"
 
@@ -67,9 +68,7 @@ class App extends Component {
 
   componentWillMount() {
     const currentCards = this.state.cards;
-    console.log("arrived at component will mount")
     this.database.on('child_added', snap => {
-      console.log("testing to see if this code worked")
       currentCards.push({
         id: snap.val().id,
         eng: snap.val().eng,
@@ -111,6 +110,7 @@ class App extends Component {
           <Route exact path="/decks" render={() => (<CreateFlashcard app={this.props.app}/>)} />
           <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
           <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
+          <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
           {/* <Route exact path="/decks/java/add" render={(props) => (<div>add flashcard</div>)} /> */}
         </Switch>
 

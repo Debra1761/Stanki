@@ -17,7 +17,7 @@ class CardStack extends Component {
             <div style={{ "display": "flex", "flexDirection": "row", "justify-content": "center"}}>
                 <div>
 
-                        <Link to={"/create/"} style={{"textDecoration": "none", "color": "black"}}> 
+                        <Link to={"/decks/"} style={{"textDecoration": "none", "color": "black"}}> 
                                  <div><img style={{ "height": "100px" , "width":"100px"}} src={mind} alt="Create your own flashcards"></img> </div>
                         </Link>
 
