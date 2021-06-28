@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import done from "./done1.png";
 import del from "./del.png";
 import edit from './edit.png'
+import file from './file.png'
 import { Table } from 'evergreen-ui'
 import { Pane, Dialog, Button } from 'evergreen-ui'
 import UpdateFlashcard from './UpdateFlashcard'
@@ -211,7 +212,7 @@ const ManageFlashcard = (props) => {
 
 
 
-                <div style={{"display":"flex","justifyContent":"flex-start", "marginLeft":"100px"}}>
+                <div style={{"display":"flex","justifyContent":"flex-start", "marginLeft":"100px", "paddingTop":"20px"}}>
 
                      <Link to={"/decks/"+props.match.params.deckname }  ><img style={{ "height": "25px"}} src={done} alt="Create your own flashcards"></img> </Link>
 
@@ -219,7 +220,7 @@ const ManageFlashcard = (props) => {
 
 
                 <div style={{"display":"flex","justifyContent":"center", "padding":"20px","fontFamily":"Palatino"}}>
-                <span> -- {props.match.params.deckname} flashcard management --</span>
+                <span> <img style={{ "height": "20px", "width": "20px"}} src={file}  alt="edit"></img>  {props.match.params.deckname} flashcards </span>
                 </div>
 
                 <div>

@@ -18,6 +18,8 @@ import mysql from "./images/mysql.png";
 import aws from "./images/aws.png";
 
 
+
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +88,7 @@ class HomePage extends Component {
     return (
 
 
-      <div className="welcomer" style={{ "height": "100vh", "background-color": "#D3F5F7", "object-fit": "cover" }}>
+      <div className="welcomer" style={{ "height": "100vh", "background-color": "#D3F5F7", "object-fit": "cover" ,"paddingTop":"50px"}}>
 
 
 
@@ -94,6 +96,10 @@ class HomePage extends Component {
 
 
         <CardStack />
+        <span style={{"font-family": "Palatino", "marginLeft":"550px" }}>
+                      click your brain to start learning today
+        </span>
+        
         <SearchPage database = {this.database}/>
 
         <div style={{ "display": "flex", "flexDirection": "row", "justifyContent": "center", "padding": "40px" }}>

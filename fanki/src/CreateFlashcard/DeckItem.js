@@ -10,6 +10,7 @@ import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 class DeckItem extends Component {
     constructor() {
         super();
@@ -73,7 +74,7 @@ class DeckItem extends Component {
         console.log(" where is the converted time", createdAt)
         return (
             
-            <div style={{"display":"flex", "flexDirection":"row", "padding":"70px","justifyContent":"end"}}onMouseEnter={() => this.setState({showDeleteButton: true})} onMouseLeave={() => this.setState({showDeleteButton: false})}>
+            <div style={{"display":"flex", "flexDirection":"row", "padding":"50px","justifyContent":"end"}} onMouseEnter={() => this.setState({showDeleteButton: true})} onMouseLeave={() => this.setState({showDeleteButton: false})}>
                     <ToastContainer />
                         {this.state.showDeleteButton &&                          
                         <div  style={{"zIndex":10000}}>

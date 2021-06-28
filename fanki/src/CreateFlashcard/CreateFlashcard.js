@@ -62,7 +62,7 @@ class CreateFlashcard extends Component {
         console.log(this.state.decks)
 
         return (
-            <div style={{"display":"flex", "flexDirection":"row","textAlign":"-webkit-end", "marginLeft":"270px"}}>                            
+            <div style={{"display":"flex", "flexDirection":"row","textAlign":"-webkit-end", "marginLeft":"270px", "paddingTop":"20px"}}>                            
                             
                             <div>
                                 <PopupCard decks={this.state.deckNames} parentCallback={this.parentCallback} databaseRef={this.props.app.database(this.databaseUrl).ref()}/>

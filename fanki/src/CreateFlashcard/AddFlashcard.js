@@ -111,7 +111,7 @@ const AddFlashcard = (props) => {
 
         return (
 
-        <div style={{ "display":"flex","flexDirection":"column"}}>
+        <div style={{ "display":"flex","flexDirection":"column", "paddingTop":"20px"}}>
 
                 <div style={{"display":"flex","justifyContent":"center","marginRight":"500px"}}>
 

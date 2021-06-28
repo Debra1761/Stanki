@@ -11,7 +11,10 @@ import ManageFlashcard from './ManageFlashcard'
 import settings from './settings.gif';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // ES6
-import "./showflashcard.css"
+import "./showflashcard.css";
+import add  from './add.png'
+import { Portal, Pane, Text, LinkIcon } from "evergreen-ui";
+
 
 const ShowFlashcard = (props) => {
 
@@ -80,7 +83,7 @@ const ShowFlashcard = (props) => {
 
 
 
-        <div>
+        <div style={{"paddingTop":"20px"}}>
 
             <div style={{"display":"flex","flexDirection":"row","justifyContent":"space-around"}}>
 
@@ -93,10 +96,10 @@ const ShowFlashcard = (props) => {
                     </div>
 
                     <div style={{"marginTop":"20px"}}>
-                            <Link to={"/decks/" + props.match.params.deckname + "/add"} style={{ "textDecoration": "none" }}>
+                            {/* <Link to={"/decks/" + props.match.params.deckname + "/add"} style={{ "textDecoration": "none" }}>
                             <img src={addf} style={{ "height": "40px", "width": "40px"}} alt="Create your own flashcards"></img>
                                                                 Add flashcard
-                            </Link>
+                            </Link> */}
                     </div>
 
             </div>
@@ -178,7 +181,14 @@ const ShowFlashcard = (props) => {
                 <div />
 
 
-
+                <Portal>
+                        <Pane background="none" padding={24} position="fixed" bottom={0} right={0}>
+                        <Link to={"/decks/" + props.match.params.deckname + "/add"} style={{ "textDecoration": "none" }}>
+                            <img src={add} style={{ "height": "40px", "width": "40px"}} alt="Create your own flashcards"></img>
+                                                              
+                            </Link>
+                        </Pane>
+                </Portal>
 
 
 

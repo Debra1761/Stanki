@@ -12,26 +12,32 @@ class TopHeader extends Component {
 
 
 
-            <div  style = {{"position":"sticky", "display":'flex',"flexDirection":"row", "justifyContent":"center"}}>
-
+            <div className="headertop" style = {{"position":"sticky", "backgroundColor":"rgba(67, 90, 111, 0.7)"}}>
       
-                        <div>
+                        <div> 
            
-                                <h3 style={{ "text-align": "center", "padding": "20px", "color": "black", "font-family": "fantasy" , "margin": 0}}>
-                                    <Link to={"/"} style={{ "textDecoration": "none" }}>
+                                <h3>
+                                    <Link to={"/"} style={{ "textDecoration": "none" , "color": "whitesmoke", "font-family": "Papyrus-Condensed" }}>
                                         <img src={crd} style={{ "height": "30px", "width": "30px"}} alt="decks"></img>STANKI - A Stackoverflow anki using spaced repitition
                                     </Link>
                                 
                                 </h3>
+                        </div>
+
+                        <div style={{"display":"flex","flexDirection":"row"}}>
+
+                                <div style={{"padding":"10px"}}> SignIn </div>
+                                <div style={{"padding":"10px"}}> SignUp </div>
+
+
+                        </div>
 
                            
-                        </div>
+                        
 
-
-
-                        <div style={{}}>
+                        {/* <div style={{}}>
                             <LoginPage/>
-                        </div>
+                        </div> */}
 
      </div>
 

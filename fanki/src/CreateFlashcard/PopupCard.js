@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import deck_add from './deck_add.png';
 import 'reactjs-popup/dist/index.css';
+import adddeck from './adddeck.png';
 
 
 class PopupCard extends Component {
@@ -108,7 +109,7 @@ class PopupCard extends Component {
                 {/* {this.state.ExistingDeck} */}
                 <Popup ref={this.referenc} trigger={
 
-                    <img style={{ "height": "45px","width":"45px"}} src={deck_add} alt="Create your own flashcards"></img>
+                    <img style={{ "height": "45px","width":"45px"}} src={adddeck} alt="Create your own flashcards"></img>
                     
 
                         } position="bottom right" closeOnDocumentClick>
