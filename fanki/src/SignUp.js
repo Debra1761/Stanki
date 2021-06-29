@@ -37,21 +37,21 @@ class SignUp extends Component{
                                             
                                             <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
                                                     <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" /> 
-                                                        <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners.">
+                                                        <Tooltip content="create a username for your account">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                                     
                                                     </div>
                                             
                                             <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Email" /> 
-                                            <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners.">
+                                            <Tooltip content="email is mandatory*">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                              </div>
 
 
                                             <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your password" /> 
-                                            <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners." hideDelay ="100">
+                                            <Tooltip content="password shoudl contain 8 characters" hideDelay ="1000" position = "Position.BOTTOM_RIGHT">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                              </div>
