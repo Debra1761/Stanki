@@ -22,11 +22,23 @@ const SignUp = (props) => {
       var user = userCredential.user;
       console.log("sign up success:", user)
       toaster.success("signed in successfully")
+
+
       props.databaseRef.child("users").child(user.uid).set({
-        "uid": user.uid, 
-        "email": user.email,
-        "username": user.email.split("@")[0]
-      })
+          "uid": user.uid, 
+          "email": user.email,
+          "username": user.email.split("@")[0]
+      }, (error) => {
+        if (error) {
+            console.log(error)
+        }
+        else {
+          history.push("/") 
+            
+        }
+    });
+
+
       // newChildRef.set(deckObject);
       // ...
     })
