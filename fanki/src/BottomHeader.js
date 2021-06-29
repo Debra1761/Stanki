@@ -9,7 +9,7 @@ class BottomHeader extends Component {
         return (
 
 
-            <div style={{"display": "flex", "flexDirection": "row","justify-content": "flex-end", "color": "black", "marginRight":"15px"}}>
+            <div style={{"display": "flex", "flexDirection": "row","justifyContent": "flex-end", "color": "black", "marginRight":"15px"}}>
 
                 <div>  <img style={{"height":"40px"}}src ={login}></img>  </div>
 

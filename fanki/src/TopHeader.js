@@ -23,6 +23,8 @@ const TopHeader = (props) => {
           // An error happened.
         });
     }
+
+    console.log("in top header", props.user)
       
     
         return (
@@ -32,7 +34,7 @@ const TopHeader = (props) => {
                         <div style={{"display": "flex", "justifyContent": "center", "width": "100%"}}> 
            
                                 <h3>
-                                    <Link to={"/"} style={{ "textDecoration": "none" , "color": "whitesmoke", "font-family": "Papyrus-Condensed" }}>
+                                    <Link to={"/"} style={{ "textDecoration": "none" , "color": "whitesmoke", "fontFamily": "Papyrus-Condensed" }}>
                                         <img src={crd} style={{ "height": "30px", "width": "30px"}} alt="decks"></img>STANKI - A Stackoverflow anki using spaced repitition
                                     </Link>
                                 
