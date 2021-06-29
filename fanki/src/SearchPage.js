@@ -44,7 +44,7 @@ const SearchPage = (props) => {
 
     const onEnterPress = (e, inputValue) => {
         if (e.key == "Enter") {
-            history.push("/decks/"+inputValue)
+            history.push("/decks/"+inputValue) 
             console.log("enter pressed", inputValue)
         }
     }

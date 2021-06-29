@@ -1,26 +1,44 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { Pane, Avatar, SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
+import firebase from 'firebase/app'
+import {toaster} from "evergreen-ui";
+import { Link, useHistory } from "react-router-dom";
 
-class SignIn extends Component{
-    constructor(){
-      super();
-      this.state={
-        speed:10,
-        showDeleteButton: false
-      };
+
+const SignIn = (props) => {
+
+
+  const [userOrEmail, setUserOrEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+
+
+
+
+  function onSignInClick () {
+      let email = userOrEmail + "@stanki.com"
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in 
+          var user = userCredential.user;
+          console.log("sign in success", user)
+          toaster.success("signed in successfully")
+          history.push("/") 
+          // ...
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          console.log("sign in error", error)
+
+          // ..
+        });
     }
 
 
-    componentWillMount(){
-    }
 
-   componentDidMount(){
-   }
-  
-
-
-   render(){
     return (
       <div style={{"display":"flex","alignSelf":"center"}}>
 
@@ -33,8 +51,8 @@ class SignIn extends Component{
                                         
                                         
                                         <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
-                                        <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Username/Email" />  </div>
-                                        <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" placeholder="Password" />  </div>
+                                        <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" value={userOrEmail} onChange={(e) => setUserOrEmail(e.target.value)} placeholder="Username/Email" />  </div>
+                                        <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />  </div>
                                       
                                       
                                         <div style={{"alignSelf":"start","paddingLeft":"25px", "paddingTop":"10px","fontSize":"12px"}}>
@@ -43,7 +61,7 @@ class SignIn extends Component{
                                             </div>
 
 
-                                      <button className="btn btn-default" type="submit" >Sign in</button>   
+                                      <button className="btn btn-default" type="submit" onClick={onSignInClick}>Sign in</button>   
 
                                       <div style={{"fontSize":"12px", "alignSelf":"flex-end"}}> forgot <span style={{"color":"blue"}}>password? </span>   </div> 
 
@@ -57,7 +75,7 @@ class SignIn extends Component{
   </div>
     );
   
-   }
+   
   }
   
 export default SignIn;

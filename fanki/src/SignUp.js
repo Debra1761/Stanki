@@ -2,27 +2,39 @@ import React, {Component, useState} from 'react';
 import { Pane, Avatar, SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
 import { Tooltip, InfoSignIcon } from 'evergreen-ui'
+import firebase from 'firebase/app'
+import {toaster} from "evergreen-ui";
+import { Link, useHistory } from "react-router-dom";
 
-class SignUp extends Component{
-    constructor(){
-      super();
-      this.state={
-        speed:10,
-        value:""
-      };
-    }
+const SignUp = (props) => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const history = useHistory();
 
 
-    componentWillMount(){
-     
-    }
-
-   componentDidMount(){
+   function onSignUpClicked () {
+     console.log("on Signup clicked", email)
+     let username = email + "@stanki.com"
+    firebase.auth().createUserWithEmailAndPassword(username, password)
+    .then((userCredential) => {
+      // Signed in 
+      var user = userCredential.user;
+      console.log("sign up success:", user)
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("sign up error", errorMessage)
+      toaster.warning("user already exists")
+      // ..
+    });
    }
   
 
 
-   render(){
+
     
     return (
       <div style={{"display":"flex","alignSelf":"center"}}>
@@ -36,28 +48,29 @@ class SignUp extends Component{
                                             
                                             
                                             <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
-                                                    <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" /> 
+                                                    {/* <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" /> 
                                                         <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners.">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                                     
-                                                    </div>
+                                                    </div> */}
                                             
-                                            <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Email" /> 
+                                            <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" value={email} onChange={(e) => setEmail(e.target.value)}/> 
+                                            
                                             <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners.">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                              </div>
 
 
-                                            <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your password" /> 
+                                            <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}/> 
                                             <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners." hideDelay ="100">
                                                                 <InfoSignIcon />
                                                             </Tooltip>
                                              </div>
 
 
-                                          <button className="btn btn-default" type="submit" >Login</button>   
+                                          <button className="btn btn-default" type="submit" onClick={this.onSignUpClicked}>Sign Up</button>   
 
                                          
 
@@ -71,7 +84,7 @@ class SignUp extends Component{
       </div>
     );
   
-   }
+   
   }
   
 export default SignUp;
