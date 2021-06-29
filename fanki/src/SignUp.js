@@ -21,13 +21,14 @@ const SignUp = (props) => {
       // Signed in 
       var user = userCredential.user;
       console.log("sign up success:", user)
+      toaster.success("signed in successfully")
       // ...
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log("sign up error", errorMessage)
-      toaster.warning("user already exists")
+      toaster.warning("sign up error")
       // ..
     });
    }
@@ -70,7 +71,7 @@ const SignUp = (props) => {
                                              </div>
 
 
-                                          <button className="btn btn-default" type="submit" onClick={this.onSignUpClicked}>Sign Up</button>   
+                                          <button className="btn btn-default" type="submit" onClick={onSignUpClicked}>Sign Up</button>   
 
                                          
 
