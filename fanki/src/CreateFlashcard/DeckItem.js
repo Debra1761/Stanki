@@ -92,7 +92,7 @@ class DeckItem extends Component {
                                                                     "backgroundColor": "white" ,
                                                                     "height": "auto", 
                                                                     "width": "500px", 
-                                                                    "padding": "20px", 
+                                                                    "padding": "10px", 
                                                                     "color": "black", 
                                                                     "borderRadius": "10px" , 
                                                                     "fontSize":"15px",

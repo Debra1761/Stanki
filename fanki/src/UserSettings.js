@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import { Pane, Avatar, SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
+
 import { Tooltip, InfoSignIcon } from 'evergreen-ui'
 
 class UserSettings extends Component{
@@ -32,10 +33,10 @@ class UserSettings extends Component{
                                         <div style={{"display":"flex","flexDirection":"column", "alignItems":"center","padding":"20px","paddingBottom":"100px",'color':"black", "boxShadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
 
                                         <h3>User Settings </h3>
-                                            <div style={{"paddingTop":"25px"}}> 
-                                            
-                                            
-                                            <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
+                                            <div style={{"paddingTop":"25px"}}>   <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
+                                          
+
+
                                                     <div style={{"paddingTop":"25px"}}> Username<input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" />                                                                                                
                                                     </div>
                                             
@@ -47,7 +48,7 @@ class UserSettings extends Component{
                                                     </div>
 
 
-                                          <button className="btn btn-default" type="submit" >Save & Update</button>   
+                                          <button className="btn btn-default" type="submit" >Update</button>   
 
                                         
                                                                   

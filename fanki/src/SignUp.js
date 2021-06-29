@@ -46,7 +46,7 @@ const SignUp = (props) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log("sign up error", errorMessage)
-      toaster.warning("sign up error")
+      toaster.warning(errorMessage)
       // ..
     });
    }
