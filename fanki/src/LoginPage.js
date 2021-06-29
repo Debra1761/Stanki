@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import login from "./images/login1.png";
+import login from "./images/gogole.png";
 import firebase from 'firebase/app'
 import "firebase/auth"
 

@@ -20,6 +20,8 @@ import HomePage from './HomePage';
 import CreateFlashcard from './CreateFlashcard/CreateFlashcard';
 import ShowFlashcard from "./CreateFlashcard/ShowFlashcard";
 import ManageFlashcard from './CreateFlashcard/ManageFlashcard';
+import Signup from './SignUp';
+import SignIn from './SignIn';
 
 
 import {
@@ -54,7 +56,7 @@ class App extends Component {
 
     const databaseUrl = "https://optimal-iris-238613-default-rtdb.europe-west1.firebasedatabase.app/"
 
-    this.databaseRef= this.app.database(databaseUrl).ref()
+    this.databaseRef = this.app.database(databaseUrl).ref()
 
     this.database = this.app.database(databaseUrl).ref().child('cards')
     this.updateCard = this.updateCard.bind(this);
@@ -107,10 +109,12 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (<HomePage app={this.props.app} />)} />
-          <Route exact path="/decks" render={() => (<CreateFlashcard app={this.props.app}/>)} />
-          <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
-          <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
-          <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app}/>)} />
+          <Route exact path="/Signup" render={() => (<Signup app={this.props.app} />)} />
+          <Route exact path="/SignIn" render={() => (<SignIn app={this.props.app} />)} />
+          <Route exact path="/decks" render={() => (<CreateFlashcard app={this.props.app} />)} />
+          <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
+          <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
+          <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
           {/* <Route exact path="/decks/java/add" render={(props) => (<div>add flashcard</div>)} /> */}
         </Switch>
 
