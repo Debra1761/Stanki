@@ -2,11 +2,13 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import crd from "./images/crd.png";
+import settings from "./CreateFlashcard/manage.png";
 import LoginPage from "./LoginPage.js";
 import { Button } from 'evergreen-ui';
 import { Pane, Avatar } from 'evergreen-ui'
 import UserSettings from './UserSettings';
 import firebase from 'firebase/app'
+import home from './home.png'
 
 const TopHeader = (props) => {
 
@@ -82,12 +84,30 @@ const TopHeader = (props) => {
                             </>
                         }
 
-                                {firebase.auth().currentUser &&                          
-                                        <div style={{"zIndex":10000}}>
-                                                <Avatar name="Bill Gates" size={40} marginRight={16} />  
-                                                <UserSettings/>   
-                                                <button onClick={onLogoutClick}>Logout</button>                       
+                                {firebase.auth().currentUser &&    
+                                <div>                      
+                                        <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-20px","display":"flex","flexDirection":"row"}}>
+                                           
+
+                                            <div> 
+                                                <Link to={"/decks/"} style={{"textDecoration": "none"}}> 
+                                                <img style={{ "height": "40px" , "width":"40px","marginRight":"15px"}} src={home} alt="Create your own flashcards"></img>
+                                                </Link> 
+                                            </div>
+
+                                            <div> 
+                                                <Link to={"/settings/"} style={{"textDecoration": "none", "color": "black"}}> 
+                                                <Avatar name="Bill Gates" size={40} marginRight={16} />                                            
+                                                </Link>                                                
+                                            </div>
+
+                                            <div> <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px"
+                                            onClick={onLogoutClick}>Logout</Button>   </div>
+                                                
+ 
+                                                                     
                                         </div>
+                                </div>
                                     }
 
                                 

@@ -22,7 +22,7 @@ import ShowFlashcard from "./CreateFlashcard/ShowFlashcard";
 import ManageFlashcard from './CreateFlashcard/ManageFlashcard';
 import Signup from './SignUp';
 import SignIn from './SignIn';
-
+import UserSettings from './UserSettings';
 
 import {
   BrowserRouter as Router,
@@ -113,6 +113,7 @@ class App extends Component {
           <Route exact path="/" render={() => (<HomePage app={this.props.app} />)} />
           <Route exact path="/Signup" render={() => (<Signup app={this.props.app} />)} />
           <Route exact path="/SignIn" render={() => (<SignIn app={this.props.app} />)} />
+          <Route exact path="/settings" render={() => (<UserSettings app={this.props.app} />)} />
           <Route exact path="/decks" render={() => (<CreateFlashcard app={this.props.app} />)} />
           <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
           <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
