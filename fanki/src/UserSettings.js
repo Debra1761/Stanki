@@ -1,9 +1,9 @@
 import React, { Component, useState, createRef } from 'react';
-import { Pane,Avatar,  SearchInput } from 'evergreen-ui';
+import { Pane, Avatar,  SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
 import stanki from './stanki.png'
-import ProfilePicture from "profile-picture"
-import "profile-picture/build/ProfilePicture.css"
+// import ProfilePicture from "profile-picture"
+// import "profile-picture/build/ProfilePicture.css"
 import { Button,Tooltip, InfoSignIcon } from 'evergreen-ui';
 import  UserAvatar from 'react-user-avatar';
 
@@ -42,7 +42,7 @@ class UserSettings extends Component {
 
 
     render() {
-
+        // const name = this.props.user.username
         return (
             <div style={{ "display": "flex", "alignSelf": "center" }}>
 
@@ -52,18 +52,18 @@ class UserSettings extends Component {
                         <div style={{ "backgroundColor": "pink", "alignItems": "center", "display": "flex", "flexDirection": "column", "width": "400px" }}>
                             <h3>Profile</h3>
 
-
+                        {this.props.user && 
                             <div >   
 
                              {/* <UserAvatar size="100" name={this.props.user.username} /> */}
-                                {/* <Avatar name="Bill Gates" size={100} />  */}
+                                <Avatar name={this.props.user.username} size={100} /> 
                                 {/* <Avatar
                                             size={100}
                                             name="Maria Mitchell"
                                             variant="marble"
                                             colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
                                  /> */}
-                                  <ProfilePicture
+                                  {/* <ProfilePicture
                                             ref={this.profilePictureRef}
                                             useHelper={false}
                                             debug={false}
@@ -74,8 +74,10 @@ class UserSettings extends Component {
                                             // border={50}
                                             backgroundColor ={"pink"}
                                             image="http://example.com/initialimage.jpg"
-                                     />
+                                     /> */}
                             </div>
+
+                                    }
 
                             {this.props.user && <div style={{ "paddingTop": "5px", "paddingBottom": "15px", "fontFamily": "Georgia-Italic" }}> {this.props.user.username}</div> }
 
@@ -102,11 +104,11 @@ class UserSettings extends Component {
 
 
                         <div style={{"marginTop":"80px","marginBottom":"30px"}}> 
-                            <button onClick={this.handleUpload.bind(this)} className="btn btn-default" type="submit" >Update</button>
+                            <Button onClick={this.handleUpload.bind(this)} className="btn btn-default" type="submit" >Update</Button>
                        </div>
 
                        <div style={{"marginTop":"30px","marginBottom":"30px"}}> 
-                            <Button style={{"backgroundColor":"#e75480", "height":"30px", "width":"150px","borderColor":"#e75480", "border":"none", "borderRadius":"2px"}} type="submit" >Delete Account</button>
+                            <Button style={{"backgroundColor":"#e75480", "height":"30px", "width":"150px","borderColor":"#e75480", "border":"none", "borderRadius":"2px"}} type="submit" >Delete Account</Button>
                        </div>
 
 
