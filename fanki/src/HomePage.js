@@ -88,15 +88,15 @@ class HomePage extends Component {
     return (
 
 
-      <div className="welcomer" style={{ "height": "100vh", "background-color": "#D3F5F7", "object-fit": "cover" ,"paddingTop":"50px"}}>
+      <div className="welcomer" style={{ "height": "100vh", "backgroundColor": "#D3F5F7", "objectFit": "cover" ,"paddingTop":"50px"}}>
 
 
 
         {/* <div>this is the user {this.state.user}</div> */}
 
 
-        <CardStack />
-        <span style={{"font-family": "Palatino", "marginLeft":"550px" }}>
+        <CardStack user={this.props.user}/>
+        <span style={{"fontFamily": "Palatino", "marginLeft":"550px" }}>
                       click your brain to start learning today
         </span>
         

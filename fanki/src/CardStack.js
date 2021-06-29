@@ -13,9 +13,6 @@ class CardStack extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            user: null
-        }
     }
 
 
@@ -29,13 +26,13 @@ class CardStack extends Component {
 
     render() {
         return (
-            <div style={{ "display": "flex", "flexDirection": "row", "justify-content": "center"}}>
+            <div style={{ "display": "flex", "flexDirection": "row", "justifyContent": "center"}}>
                     <div>
 
                     {/* <h3> Start leaning today</h3> */}
 
                         {
-                        this.state.user? 
+                        this.props.user? 
                             <Link to={"/decks/"} style={{"textDecoration": "none", "color": "black"}}> 
                                     <div><img style={{ "height": "100px" , "width":"100px"}} src={mind} alt="Create your own flashcards"></img> </div>             
                             </Link>

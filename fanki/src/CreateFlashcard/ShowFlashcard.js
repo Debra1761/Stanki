@@ -116,7 +116,7 @@ const ShowFlashcard = (props) => {
 
 
 
-            <div style={{ "display": "flex", "flexDirection": "row", "justify-content": "center" }}>
+            <div style={{ "display": "flex", "flexDirection": "row", "justifyContent": "center" }}>
 
 
                 <h3 style={{ "text-transform": "uppercase" }}>{props.match.params.deckname} </h3>
@@ -138,7 +138,7 @@ const ShowFlashcard = (props) => {
 
 
                 <div className="front">
-                    <h5 style={{ "color": "green" ,"font-family":"cursive"}}>Front</h5>
+                    <h5 style={{ "color": "green" ,"fontFamily":"cursive"}}>Front</h5>
 
                     {flashcards.length > 0 && <ReactQuill 
                                                 ref={frontRef}
@@ -172,7 +172,7 @@ const ShowFlashcard = (props) => {
                 </div>
             </div>
 
-            <div style={{ "display": "flex", "flexDirection": "column", "align-items": "center", "marginTop": "10px", "font-family": "fantasy" }}>
+            <div style={{ "display": "flex", "flexDirection": "column", "align-items": "center", "marginTop": "10px", "fontFamily": "fantasy" }}>
 
 
                 {counter + 1}/{flashcards.length}

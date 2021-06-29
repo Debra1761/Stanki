@@ -90,6 +90,7 @@ class App extends Component {
     var comp = this;
         firebase.auth().onAuthStateChanged(user => {
             if(user!== null) {
+              console.log('on auth changed', user)
                 comp.setState({user: {
                   "uid": user.uid,
                   "email": user.email,
@@ -123,7 +124,7 @@ class App extends Component {
     return (
       // "backgroundImage": `url(${brain})`
 
-      <div className="welcomer" style={{ "height": "150vh", "background-color": "#D3F5F7", "object-fit": "cover" }}>
+      <div className="welcomer" style={{ "height": "150vh", "backgroundColor": "#D3F5F7", "objectFit": "cover" }}>
 
         <TopHeader user={this.state.user}/>
 
