@@ -38,6 +38,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    console.log('firebase user', firebase.auth().currentUser)
+
 
     this.app = this.props.app;
     if (!firebase.apps.length) {

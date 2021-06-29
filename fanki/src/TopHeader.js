@@ -1,29 +1,47 @@
 
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import crd from "./images/crd.png";
 import LoginPage from "./LoginPage.js";
 import { Button } from 'evergreen-ui';
 import { Pane, Avatar } from 'evergreen-ui'
 import UserSettings from './UserSettings';
+import firebase from 'firebase/app'
 
-class TopHeader extends Component {
-    constructor(){
-        super();
-        this.state={
-          speed:10,
-          showUserButton: false
-        };
-      }
+const TopHeader = (props) => {
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => { 
+
+        firebase.auth().onAuthStateChanged(user => {
+            console.log("inside onAuthStateChanged", user)
+            if(user!== null) {
+                setUser(user)
+            }
+            else {
+                setUser(null)              
+            }
+        });
+
+    }, [user])
+
+
+
+    function onLogoutClick () {
+        firebase.auth().signOut().then(() => {
+            console.log("sign out success")
+          // Sign-out successful.
+        }).catch((error) => {
+            console.log('sign out error')
+          // An error happened.
+        });
+    }
+      
   
   
-      componentWillMount(){
-      }
-  
-     componentDidMount(){
-     }
+
     
-    render() {
         return (
 
 
@@ -41,28 +59,34 @@ class TopHeader extends Component {
                                 </h3>
                         </div>
 
+
+                        
                         <div style={{"display":"flex","flexDirection":"row"}}>
 
-                                <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-20px"}}  onclick={() => this.setState({showUserButton: true})}> 
+                        {!firebase.auth().currentUser && 
+                            <>
+                                <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-20px"}} > 
                                     <Link  to={"/SignUp"} style={{ "textDecoration": "none" }} >
                                         <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px">
                                             Create an account
                                         </Button>
                                     </Link> 
                                 </div>
-                                <div style={{"padding":"03px", "position":"absolute", "right": "180px", "marginTop": "-20px"}}  onclick={() => this.setState({showUserButton: true})}> 
+                                <div style={{"padding":"03px", "position":"absolute", "right": "180px", "marginTop": "-20px"}} > 
                                     <Link to={"/SignIn"} style={{ "textDecoration": "none" }}>
                                         <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px">
                                         Login
                                         </Button>
                                     </Link> 
                                 </div>
+                            </>
+                        }
 
-                                {this.state.showUserButton &&                          
+                                {firebase.auth().currentUser &&                          
                                         <div style={{"zIndex":10000}}>
                                                 <Avatar name="Bill Gates" size={40} marginRight={16} />  
                                                 <UserSettings/>   
-                                                <button>Logout</button>                       
+                                                <button onClick={onLogoutClick}>Logout</button>                       
                                         </div>
                                     }
 
@@ -93,7 +117,6 @@ class TopHeader extends Component {
 //             </div>
         );
 
-    }
 }
 
 export default TopHeader;
