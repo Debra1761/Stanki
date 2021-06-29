@@ -33,65 +33,70 @@ class CreateFlashcard extends Component {
 
         var comp = this;
 
-        this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").on("value", (snap) => {
-            console.log('the users decks', snap.val())
 
-            if (snap.val()) {
-
-                let userDecks = Object.keys(snap.val());
-
-                userDecks.forEach(userDeck => {
-
-                    this.props.databaseRef.child('decks').child(userDeck).get(snap => {
-                        console.log("blaaaaaaaaa", snap.val())
-            
-                        var dictionary = snap.val() 
-            
-                        var deckname = Object.keys(dictionary).map(function(key){
-                            return dictionary[key];
-                        });
-            
-                        var deckNames = Object.keys(dictionary).map(function(key){
-                            return dictionary[key]['deck_name'];
-                        });
-            
-                        comp.setState({
-                        decks: deckname,
-                        deckNames : deckNames
-            
+        if (this.props.user) {
+            this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").on("value", (snap) => {
+                console.log('the users decks', snap.val())
+    
+                if (snap.val()) {
+    
+                    let userDecks = Object.keys(snap.val());
+    
+                    userDecks.forEach(userDeck => {
+    
+                        this.props.databaseRef.child('decks').child(userDeck).get(snap => {
+                            console.log("blaaaaaaaaa", snap.val())
+                
+                            var dictionary = snap.val() 
+                
+                            var deckname = Object.keys(dictionary).map(function(key){
+                                return dictionary[key];
+                            });
+                
+                            var deckNames = Object.keys(dictionary).map(function(key){
+                                return dictionary[key]['deck_name'];
+                            });
+                
+                            comp.setState({
+                            decks: deckname,
+                            deckNames : deckNames
+                
+                            })
+                
                         })
-            
+    
                     })
-
-                })
-
-                // this.props.databaseRef.child('decks').on('value', snap => {
-                //     console.log("in createflashcard decks: testing to see if this code worked", snap.val())
-        
-                //     var dictionary = snap.val() 
-        
-                //     var deckname = Object.keys(dictionary).map(function(key){
-                //         return dictionary[key];
-                //     });
-        
-                //     var deckNames = Object.keys(dictionary).map(function(key){
-                //         return dictionary[key]['deck_name'];
-                //     });
-        
-                //     comp.setState({
-                //     decks: deckname,
-                //     deckNames : deckNames
-        
-                //     })
-        
-                // })
-
-
-            }
-
-
+    
+                    // this.props.databaseRef.child('decks').on('value', snap => {
+                    //     console.log("in createflashcard decks: testing to see if this code worked", snap.val())
             
-        })
+                    //     var dictionary = snap.val() 
+            
+                    //     var deckname = Object.keys(dictionary).map(function(key){
+                    //         return dictionary[key];
+                    //     });
+            
+                    //     var deckNames = Object.keys(dictionary).map(function(key){
+                    //         return dictionary[key]['deck_name'];
+                    //     });
+            
+                    //     comp.setState({
+                    //     decks: deckname,
+                    //     deckNames : deckNames
+            
+                    //     })
+            
+                    // })
+    
+    
+                }
+    
+    
+                
+            })
+        }
+
+        
 
         
     }
