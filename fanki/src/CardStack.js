@@ -20,10 +20,9 @@ class CardStack extends Component {
 
 
     componentDidMount() {
+        
         var comp = this;
         firebase.auth().onAuthStateChanged(user => {
-            console.log("inside onAuthStateChanged in cardstack", user)
-            console.log(firebase.auth().currentUser)
             if(user!== null) {
                 comp.setState({user: user})
             }
