@@ -26,7 +26,6 @@ const config = {
 
 const app = firebase.initializeApp(config);
 const auth=firebase.auth();
-// auth.onAuthStateChanged(user=>{console.log("Firebase user is " +user)});
 
 var database = firebase.firestore();
 var storage = firebase.storage();

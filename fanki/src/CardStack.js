@@ -20,16 +20,7 @@ class CardStack extends Component {
 
 
     componentDidMount() {
-        
-        var comp = this;
-        firebase.auth().onAuthStateChanged(user => {
-            if(user!== null) {
-                comp.setState({user: user})
-            }
-            else {
-                comp.setState({user: null})              
-            }
-        });
+
     }
 
     onCreateClick = () => {

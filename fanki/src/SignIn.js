@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import { Pane, Avatar, SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
 import firebase from 'firebase/app'
@@ -13,10 +13,15 @@ const SignIn = (props) => {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
+  useEffect(()=> {
+    console.log('use effect is loaded')
+  }, []) 
+
 
 
 
   function onSignInClick () {
+    console.log("sign in click", userOrEmail, password)
       let email = userOrEmail + "@stanki.com"
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
@@ -30,11 +35,14 @@ const SignIn = (props) => {
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          // toaster.warning("username and password already exists")
           console.log("sign in error", error)
+          toaster.warning(errorMessage)
+          
 
           // ..
         });
+
+        console.log("end of sign in")
     }
 
 
