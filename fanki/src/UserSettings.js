@@ -68,9 +68,9 @@ class UserSettings extends Component {
                                             useHelper={false}
                                             debug={false}
                                             frameFormat = "circle"
-                                            frameSize = {100}
-                                            width={250}
-                                            height={250}
+                                            frameSize = "10px"
+                                            width="50px"
+                                            height="50px"
                                             // border={50}
                                             backgroundColor ={"pink"}
                                             image="http://example.com/initialimage.jpg"
@@ -87,7 +87,7 @@ class UserSettings extends Component {
 
                             {this.props.user &&
 
-                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Email ID :  <span className= "inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none" , "color":"grey"}} type="text" placeholder=""> {this.props.user.email} </span> </div>
+                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Email ID :  <span className= "inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none" }} type="text" placeholder=""> {this.props.user.email} </span> </div>
 
                             }
 
@@ -103,6 +103,10 @@ class UserSettings extends Component {
 
                         <div style={{"marginTop":"80px","marginBottom":"30px"}}> 
                             <button onClick={this.handleUpload.bind(this)} className="btn btn-default" type="submit" >Update</button>
+                       </div>
+
+                       <div style={{"marginTop":"30px","marginBottom":"30px"}}> 
+                            <button style={{"backgroundColor":"#e75480", "height":"30px", "width":"150px","borderColor":"#e75480", "border":"none", "borderRadius":"2px"}} type="submit" >Delete Account</button>
                        </div>
 
 
