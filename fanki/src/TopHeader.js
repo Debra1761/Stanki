@@ -66,23 +66,23 @@ const TopHeader = (props) => {
 
                                 {props.user &&    
                                 <div>                      
-                                        <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-20px","display":"flex","flexDirection":"row"}}>
+                                        <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-10px","display":"flex","flexDirection":"row"}}>
                                            
 
                                             <div> 
                                                 <Link to={"/decks/"} style={{"textDecoration": "none"}}> 
-                                                <img style={{ "height": "40px" , "width":"40px","marginRight":"15px"}} src={home} alt="Create your own flashcards"></img>
+                                                <img style={{ "height": "30px" , "width":"30px","marginRight":"15px"}} src={home} alt="Create your own flashcards"></img>
                                                 </Link> 
                                             </div>
 
                                             <div> 
                                                 <Link to={"/settings/"} style={{"textDecoration": "none", "color": "black"}}> 
-                                                <Avatar name="Bill Gates" size={40} marginRight={16} />                                            
+                                                <Avatar name="Bill Gates" size={30} marginRight={16} />                                            
                                                 </Link>                                                
                                             </div>
 
 
-                                        <div> <img onClick={onLogoutClick} style={{ "height": "40px" , "width":"40px","marginRight":"15px"}} src={logout} alt="Create your own flashcards"></img></div>
+                                        <div> <img onClick={onLogoutClick} style={{ "height": "30px" , "width":"30px","marginRight":"15px"}} src={logout} alt="Create your own flashcards"></img></div>
 
                                             {/* <div> <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px"
                                             onClick={onLogoutClick}>Logout</Button>   </div> */}
