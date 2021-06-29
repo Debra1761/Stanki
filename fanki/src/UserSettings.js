@@ -4,8 +4,8 @@ import LoginPage from './LoginPage';
 import stanki from './stanki.png'
 import ProfilePicture from "profile-picture"
 import "profile-picture/build/ProfilePicture.css"
-import { Tooltip, InfoSignIcon } from 'evergreen-ui';
-import  UserAvatar from 'react-user-avatar'
+import { Button,Tooltip, InfoSignIcon } from 'evergreen-ui';
+import  UserAvatar from 'react-user-avatar';
 
 
 class UserSettings extends Component {
@@ -106,7 +106,7 @@ class UserSettings extends Component {
                        </div>
 
                        <div style={{"marginTop":"30px","marginBottom":"30px"}}> 
-                            <button style={{"backgroundColor":"#e75480", "height":"30px", "width":"150px","borderColor":"#e75480", "border":"none", "borderRadius":"2px"}} type="submit" >Delete Account</button>
+                            <Button style={{"backgroundColor":"#e75480", "height":"30px", "width":"150px","borderColor":"#e75480", "border":"none", "borderRadius":"2px"}} type="submit" >Delete Account</button>
                        </div>
 
 
