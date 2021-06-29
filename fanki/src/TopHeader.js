@@ -13,27 +13,6 @@ import logout from './logout.png'
 
 const TopHeader = (props) => {
 
-    const [user, setUser] = useState(null);
-
-    useEffect(() => { 
-
-        firebase.auth().onAuthStateChanged(user => {
-            if(user!== null) {
-                setUser(
-                    {
-                        "uid": user.uid,
-                        "email": user.email
-                    }
-                    )
-            }
-            else {
-                setUser(null)              
-            }
-        });
-
-    }, [user])
-
-
 
     function onLogoutClick () {
         firebase.auth().signOut().then(() => {
@@ -45,14 +24,8 @@ const TopHeader = (props) => {
         });
     }
       
-  
-  
-
     
         return (
-
-
-
 
             <div className="headertop" style = {{"position":"sticky", "backgroundColor":"rgba(67, 90, 111, 0.7)"}}>
       
@@ -70,7 +43,7 @@ const TopHeader = (props) => {
                         
                         <div style={{"display":"flex","flexDirection":"row"}}>
 
-                        {!firebase.auth().currentUser && 
+                        {!props.user && 
                             <>
                                 <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-20px"}} > 
                                     <Link  to={"/SignUp"} style={{ "textDecoration": "none" }} >
@@ -89,7 +62,7 @@ const TopHeader = (props) => {
                             </>
                         }
 
-                                {firebase.auth().currentUser &&    
+                                {props.user &&    
                                 <div>                      
                                         <div style={{"padding":"03px", "position":"absolute", "right": "20px", "marginTop": "-10px","display":"flex","flexDirection":"row"}}>
                                            

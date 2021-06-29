@@ -90,7 +90,11 @@ class App extends Component {
     var comp = this;
         firebase.auth().onAuthStateChanged(user => {
             if(user!== null) {
-                comp.setState({user: user})
+                comp.setState({user: {
+                  "uid": user.uid,
+                  "email": user.email,
+                  "username": user.email.split('@')[0]
+                }})
             }
             else {
                 comp.setState({user: null})              
@@ -121,19 +125,19 @@ class App extends Component {
 
       <div className="welcomer" style={{ "height": "150vh", "background-color": "#D3F5F7", "object-fit": "cover" }}>
 
-        <TopHeader />
+        <TopHeader user={this.state.user}/>
 
         <Switch>
-          <Route exact path="/" render={() => (<HomePage app={this.props.app} />)} />
+          <Route exact path="/" render={() => (<HomePage user={this.state.user} app={this.props.app} />)} />
 
           <Route exact path="/Signup" render={() => (<Signup databaseRef={this.databaseRef} app={this.props.app} />)} />
           <Route exact path="/SignIn" render={() => (<SignIn databaseRef={this.databaseRef} app={this.props.app} />)} />
-          <Route exact path="/settings" render={() => (<UserSettings app={this.props.app} />)} />
+          <Route exact path="/settings" render={() => (<UserSettings app={this.props.app} user={this.state.user}/>)} />
           <Route exact path="/decks" render={() => (<CreateFlashcard databaseRef={this.databaseRef} app={this.props.app} user={this.state.user}/>)} />
 
-          <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
-          <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
-          <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
+          <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} user={this.state.user}/>)} />
+          <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} user={this.state.user}/>)} />
+          <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} user={this.state.user}/>)} />
           {/* <Route exact path="/decks/java/add" render={(props) => (<div>add flashcard</div>)} /> */}
         </Switch>
 
@@ -144,18 +148,3 @@ class App extends Component {
 
 export default App;
 
-
-//style={{ "height": "100vh", "background": "#CBAACB" }}
-  // componentDidMount() {
-  //   var that = this;
-
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     console.log("on auth changed, userid:", user)
-  //     if (user !== null) {
-  //       that.setState({ user: user.uid })
-  //     }
-  //     else {
-  //       that.setState({ user: null })
-  //     }
-  //   });
-  // }

@@ -35,10 +35,7 @@ const SignIn = (props) => {
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-<<<<<<< HEAD
-          toaster.warning(errorMessage)
-=======
->>>>>>> 7afb8da5970a57ffa55b8361f13757b500fd8418
+
           console.log("sign in error", error)
           toaster.warning(errorMessage)
           
