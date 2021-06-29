@@ -30,7 +30,7 @@ const SignIn = (props) => {
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          // toaster.warning("username and password already exists")
+          toaster.warning(errorMessage)
           console.log("sign in error", error)
 
           // ..

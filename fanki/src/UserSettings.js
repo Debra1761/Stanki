@@ -30,14 +30,14 @@ class UserSettings extends Component{
 
           <div style={{"backgroundColor":"antiquewhite","width":"350px","marginLeft":"500px","marginTop":"100px","backgroundColor" : "white", "color":"black","position":"absolute"}}>
               
-                                        <div style={{"display":"flex","flexDirection":"column", "alignItems":"center","padding":"20px","paddingBottom":"100px",'color':"black", "boxShadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
+                                        <div style={{"display":"flex","flexDirection":"column", "alignItems":"center",'color':"black", "boxShadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
+                                                 <div style={{"backgroundColor":"pink"}}>
+                                                         <h3>Profile</h3>
+                                                    
+                                                   
+                                                        <div >   <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
+                                                        <div style={{"paddingTop":"25px"}}> Username<input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" /> </div>
 
-                                        <h3>User Settings </h3>
-                                            <div style={{"paddingTop":"25px"}}>   <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
-                                          
-
-
-                                                    <div style={{"paddingTop":"25px"}}> Username<input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" />                                                                                                
                                                     </div>
                                             
                                                     <div style={{"paddingTop":"25px"}}> EmailID<input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Email" />                                                
