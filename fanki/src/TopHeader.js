@@ -5,6 +5,7 @@ import crd from "./images/crd.png";
 import LoginPage from "./LoginPage.js";
 import { Button } from 'evergreen-ui';
 import { Pane, Avatar } from 'evergreen-ui'
+import UserSettings from './UserSettings';
 
 class TopHeader extends Component {
     constructor(){
@@ -59,9 +60,11 @@ class TopHeader extends Component {
 
                                 {this.state.showUserButton &&                          
                                         <div style={{"zIndex":10000}}>
-                                                <Avatar name="Bill Gates" size={40} marginRight={16} />                            
+                                                <Avatar name="Bill Gates" size={40} marginRight={16} />  
+                                                <UserSettings/>   
+                                                <button>Logout</button>                       
                                         </div>
-                        }
+                                    }
 
                                 
 
