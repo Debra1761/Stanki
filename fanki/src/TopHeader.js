@@ -9,6 +9,7 @@ import { Pane, Avatar } from 'evergreen-ui'
 import UserSettings from './UserSettings';
 import firebase from 'firebase/app'
 import home from './home.png'
+import logout from './logout.png'
 
 const TopHeader = (props) => {
 
@@ -105,8 +106,11 @@ const TopHeader = (props) => {
                                                 </Link>                                                
                                             </div>
 
-                                            <div> <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px"
-                                            onClick={onLogoutClick}>Logout</Button>   </div>
+
+                                        <div> <img onClick={onLogoutClick} style={{ "height": "40px" , "width":"40px","marginRight":"15px"}} src={logout} alt="Create your own flashcards"></img></div>
+
+                                            {/* <div> <Button marginRight={16} appearance="primary" backgroundColor = "rgba(67, 90, 111, 0.7)" border="none" border-radius= "20px"
+                                            onClick={onLogoutClick}>Logout</Button>   </div> */}
                                                 
  
                                                                      
