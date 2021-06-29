@@ -1,9 +1,12 @@
 import React, { Component, useState, createRef } from 'react';
-import { Pane, Avatar, SearchInput } from 'evergreen-ui';
+import { Pane,Avatar,  SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
+import stanki from './stanki.png'
 import ProfilePicture from "profile-picture"
 import "profile-picture/build/ProfilePicture.css"
-import { Tooltip, InfoSignIcon } from 'evergreen-ui'
+import { Tooltip, InfoSignIcon } from 'evergreen-ui';
+import  UserAvatar from 'react-user-avatar'
+
 
 class UserSettings extends Component {
     constructor() {
@@ -30,7 +33,7 @@ class UserSettings extends Component {
     }
 
     componentWillMount() {
-
+    console.log("this is something",this.props.user)
     }
 
     componentDidMount() {
@@ -51,32 +54,47 @@ class UserSettings extends Component {
 
 
                             <div >   
-                                {/* <Avatar name="Bill Gates" size={100} />  */}
 
+                             {/* <UserAvatar size="100" name={this.props.user.username} /> */}
+                                {/* <Avatar name="Bill Gates" size={100} />  */}
+                                {/* <Avatar
+                                            size={100}
+                                            name="Maria Mitchell"
+                                            variant="marble"
+                                            colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+                                 /> */}
                                   <ProfilePicture
                                             ref={this.profilePictureRef}
-                                            useHelper={true}
-                                            debug={true}
+                                            useHelper={false}
+                                            debug={false}
                                             frameFormat = "circle"
-                                            frameSize = "50px"
-                                            backgroundColor ="pink"
-                                            image ={<Avatar name="Bill Gates" size={100} /> }
+                                            frameSize = {100}
+                                            width={250}
+                                            height={250}
+                                            // border={50}
+                                            backgroundColor ={"pink"}
+                                            image="http://example.com/initialimage.jpg"
                                      />
                             </div>
 
-                            <div style={{ "paddingTop": "5px", "paddingBottom": "15px", "fontFamily": "Georgia-Italic" }}> Username </div>
+                            {this.props.user && <div style={{ "paddingTop": "5px", "paddingBottom": "15px", "fontFamily": "Georgia-Italic" }}> {this.props.user.username}</div> }
 
                         </div>
 
 
 
-                        <div style={{ "paddingTop": "50px" }}>
-                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Email ID :  <input  className="inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none" }} type="text" placeholder="Email" />
-                            </div>
+                        <div style={{ "paddingTop": "50px" , "color":"darkgrey" }}>
+
+                            {this.props.user &&
+
+                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Email ID :  <span className= "inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none" , "color":"grey"}} type="text" placeholder=""> {this.props.user.email} </span> </div>
+
+                            }
 
 
-                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Password :<input  className="inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none"  }} type="text" placeholder="password" />
-                            </div>
+                                {this.props.user &&
+                            <div className="inline-text_copy inline-text_copy--active" style={{ "paddingTop": "25px" }}> Name :<span  className="inline-text_input inline-text_input--rest" style={{ "height": "25px", "width": "250px","border": "none" , "color":"grey" }} type="text" placeholder=""> {this.props.user.username} </span></div>
+                                    }
 
                         </div>
 
@@ -84,7 +102,7 @@ class UserSettings extends Component {
 
 
                         <div style={{"marginTop":"80px","marginBottom":"30px"}}> 
-                            <button className="btn btn-default" type="submit" >Update</button>
+                            <button onClick={this.handleUpload.bind(this)} className="btn btn-default" type="submit" >Update</button>
                        </div>
 
 
