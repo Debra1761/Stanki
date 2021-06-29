@@ -15,9 +15,13 @@ const TopHeader = (props) => {
     useEffect(() => { 
 
         firebase.auth().onAuthStateChanged(user => {
-            console.log("inside onAuthStateChanged", user)
             if(user!== null) {
-                setUser(user)
+                setUser(
+                    {
+                        "uid": user.uid,
+                        "email": user.email
+                    }
+                    )
             }
             else {
                 setUser(null)              

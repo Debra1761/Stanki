@@ -31,26 +31,69 @@ class CreateFlashcard extends Component {
 
         // const deckname = this.state.decks;
 
-        this.props.app.database(this.databaseUrl).ref().child('decks').on('value', snap => {
-            console.log("in createflashcard decks: testing to see if this code worked", snap.val())
+        var comp = this;
 
-            var dictionary = snap.val() 
+        this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").on("value", (snap) => {
+            console.log('the users decks', snap.val())
 
-            var deckname = Object.keys(dictionary).map(function(key){
-                return dictionary[key];
-            });
+            if (snap.val()) {
 
-            var deckNames = Object.keys(dictionary).map(function(key){
-                return dictionary[key]['deck_name'];
-            });
+                let userDecks = Object.keys(snap.val());
 
-            this.setState({
-            decks: deckname,
-            deckNames : deckNames
+                userDecks.forEach(userDeck => {
 
-            })
+                    this.props.databaseRef.child('decks').child(userDeck).get(snap => {
+                        console.log("blaaaaaaaaa", snap.val())
+            
+                        var dictionary = snap.val() 
+            
+                        var deckname = Object.keys(dictionary).map(function(key){
+                            return dictionary[key];
+                        });
+            
+                        var deckNames = Object.keys(dictionary).map(function(key){
+                            return dictionary[key]['deck_name'];
+                        });
+            
+                        comp.setState({
+                        decks: deckname,
+                        deckNames : deckNames
+            
+                        })
+            
+                    })
 
+                })
+
+                // this.props.databaseRef.child('decks').on('value', snap => {
+                //     console.log("in createflashcard decks: testing to see if this code worked", snap.val())
+        
+                //     var dictionary = snap.val() 
+        
+                //     var deckname = Object.keys(dictionary).map(function(key){
+                //         return dictionary[key];
+                //     });
+        
+                //     var deckNames = Object.keys(dictionary).map(function(key){
+                //         return dictionary[key]['deck_name'];
+                //     });
+        
+                //     comp.setState({
+                //     decks: deckname,
+                //     deckNames : deckNames
+        
+                //     })
+        
+                // })
+
+
+            }
+
+
+            
         })
+
+        
     }
 
     parentCallback = (vals) => {

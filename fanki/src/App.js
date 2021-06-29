@@ -65,12 +65,14 @@ class App extends Component {
 
     this.state = {
       cards: [],
-
+      user: null,
       currentCard: {}
     };
   }
 
   componentWillMount() {
+
+
     const currentCards = this.state.cards;
     this.database.on('child_added', snap => {
       currentCards.push({
@@ -84,6 +86,18 @@ class App extends Component {
       })
 
     })
+
+    var comp = this;
+        firebase.auth().onAuthStateChanged(user => {
+            if(user!== null) {
+                comp.setState({user: user})
+            }
+            else {
+                comp.setState({user: null})              
+            }
+        });
+
+
   }
 
 
@@ -111,9 +125,9 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (<HomePage app={this.props.app} />)} />
-          <Route exact path="/Signup" render={() => (<Signup app={this.props.app} />)} />
-          <Route exact path="/SignIn" render={() => (<SignIn app={this.props.app} />)} />
-          <Route exact path="/decks" render={() => (<CreateFlashcard app={this.props.app} />)} />
+          <Route exact path="/Signup" render={() => (<Signup databaseRef={this.databaseRef} app={this.props.app} />)} />
+          <Route exact path="/SignIn" render={() => (<SignIn databaseRef={this.databaseRef} app={this.props.app} />)} />
+          <Route exact path="/decks" render={() => (<CreateFlashcard databaseRef={this.databaseRef} app={this.props.app} user={this.state.user}/>)} />
           <Route exact path="/decks/:deckname" render={(props) => (<ShowFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
           <Route exact path="/decks/:deckname/add" render={(props) => (<AddFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
           <Route exact path="/decks/:deckname/manage" render={(props) => (<ManageFlashcard {...props} databaseRef={this.databaseRef} app={this.props.app} />)} />
