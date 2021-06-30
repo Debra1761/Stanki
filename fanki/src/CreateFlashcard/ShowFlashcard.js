@@ -41,7 +41,19 @@ const ShowFlashcard = (props) => {
 
         props.databaseRef.child("flashcards").child(props.match.params.deckname).on('value', snap => {
 
+            if (snap.val() == null) {
+
+
+                setFlashcards([])
+
+
+
+            } else {
+
+
+
             setFlashcards(snap.val())
+
             console.log("in showflashcard", snap.val())
 
 
@@ -51,8 +63,19 @@ const ShowFlashcard = (props) => {
                 return dictionary[key];
             });
 
-
+            if (deckname==null) {
+                setFlashcards([])
+            } else {
             setFlashcards(deckname)
+            }
+
+
+
+            }
+
+
+
+            
 
             // this.setState({
             // decks: deckname
@@ -76,6 +99,7 @@ const ShowFlashcard = (props) => {
 
 
 
+    console.log("flashcards", flashcards)
     return (
 
 

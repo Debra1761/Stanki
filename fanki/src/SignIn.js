@@ -3,6 +3,7 @@ import { Pane, Avatar, SearchInput } from 'evergreen-ui';
 import LoginPage from './LoginPage';
 import firebase from 'firebase/app'
 import {toaster} from "evergreen-ui";
+import mind from './mind.png';
 import { Link, useHistory } from "react-router-dom";
 
 
@@ -51,20 +52,22 @@ const SignIn = (props) => {
     return (
       <div style={{"display":"flex","alignSelf":"center"}}>
 
-      <div style={{"backgroundColor":"antiquewhite","width":"350px","marginLeft":"500px","marginTop":"100px","backgroundColor" : "white", "color":"black"}}>
+      <div style={{"backgroundColor":"antiquewhite","width":"400px","marginLeft":"500px","marginTop":"100px","backgroundColor" : "white", "color":"black"}}>
           
                                     <div style={{"display":"flex","flexDirection":"column", "alignItems":"center","padding":"20px","paddingBottom":"100px",'color':"black", "boxShadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
 
                                     <h3>Sign in </h3>
                                         <div style={{"paddingTop":"25px"}}> 
                                         
+                                        <img style={{ "height": "100px" , "width":"100px"}} src={mind} alt="Create your own flashcards"></img>
+                                        {/* <Avatar name="Bill Gates" size={60} marginRight={16} /> */}
                                         
-                                        <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
+                                         </div>
                                         <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" value={userOrEmail} onChange={(e) => setUserOrEmail(e.target.value)} placeholder="Username/Email" />  </div>
                                         <div style={{"paddingTop":"25px"}}> <input  style={{"height":"25px","width":"250px"}} type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />  </div>
                                       
                                       
-                                        <div style={{"alignSelf":"start","paddingLeft":"25px", "paddingTop":"10px","fontSize":"12px"}}>
+                                        <div style={{"alignSelf":"start","paddingLeft":"35px", "paddingTop":"10px","fontSize":"12px"}}>
                                                 <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter"></input>
                                                 <label style ={{"color":"grey"}} for="subscribeNews">Keep me signed in on this device?</label>
                                             </div>

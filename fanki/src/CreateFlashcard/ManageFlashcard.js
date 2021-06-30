@@ -51,6 +51,8 @@ const ManageFlashcard = (props) => {
 
 
             var flashcardSnap = snap.val() 
+
+            if (flashcardSnap !== null) {
             var flashcards = Object.keys(flashcardSnap).map(function(key){
                 return flashcardSnap[key];
             });
@@ -60,6 +62,7 @@ const ManageFlashcard = (props) => {
             setFlashcards(flashcards)
 
             console.log("in manage flashcards", flashcards)
+        }
 
 
         })

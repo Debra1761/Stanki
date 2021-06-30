@@ -4,6 +4,7 @@ import LoginPage from './LoginPage';
 import { Tooltip, InfoSignIcon } from 'evergreen-ui'
 import firebase from 'firebase/app'
 import {toaster} from "evergreen-ui";
+import mind from './mind.png';
 import { Link, useHistory } from "react-router-dom";
 
 const SignUp = (props) => {
@@ -65,8 +66,10 @@ const SignUp = (props) => {
                                         <h3>CREATE AN ACCOUNT </h3>
                                             <div style={{"paddingTop":"25px"}}> 
                                             
+                                            <img style={{ "height": "100px" , "width":"100px"}} src={mind} alt="Create your own flashcards"></img>
+                                            {/* <Avatar name="Bill Gates" size={60} marginRight={16} />  */}
                                             
-                                            <Avatar name="Bill Gates" size={60} marginRight={16} /> </div>
+                                            </div>
                                                     {/* <div style={{"paddingTop":"25px"}}> <input style={{"height":"25px","width":"250px"}} type="text" placeholder="Enter your Username" /> 
                                                         <Tooltip content="STANKI allows learners to organize decks, add flashcards with images, and collaborate with multiple learners.">
                                                                 <InfoSignIcon />

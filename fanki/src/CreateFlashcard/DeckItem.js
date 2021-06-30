@@ -57,6 +57,11 @@ class DeckItem extends Component {
     onDeleteClick = () => {
         console.log("on delete click", this.props.deck.id)
         this.props.databaseRef.child("decks").child(this.props.deck.id).remove();
+
+        let deckObject = {}
+        deckObject[this.props.deck.id] = null;
+
+        this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").update(deckObject)
         this.notification()
     }
 

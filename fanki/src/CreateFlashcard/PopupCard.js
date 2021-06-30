@@ -98,6 +98,14 @@ class PopupCard extends Component {
 
         newChildRef.set(deckObject);
 
+        var userRef = this.props.databaseRef.child("users").child(this.props.user.uid).child("decks")
+
+        var deckObject = {}
+        deckObject[key] = true
+
+        userRef.update(deckObject)
+
+
 
 
         this.props.parentCallback(this.state.ExistingDeck)

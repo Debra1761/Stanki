@@ -32,14 +32,17 @@ const AddFlashcard = (props) => {
         props.databaseRef.child("flashcards").child(props.match.params.deckname).on('value', snap => {
 
             var flashcardSnap = snap.val() 
-            var flashcards = Object.keys(flashcardSnap).map(function(key){
-                return flashcardSnap[key];
-            });
+
+            if (flashcardSnap !== null) {
+                var flashcards = Object.keys(flashcardSnap).map(function(key){
+                    return flashcardSnap[key];
+                });
 
 
 
-            setFlashcards(flashcards)
-            console.log("in add flashcards", flashcards)
+                setFlashcards(flashcards)
+                console.log("in add flashcards", flashcards)
+        }
             
         })
 
