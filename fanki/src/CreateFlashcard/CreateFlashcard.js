@@ -8,12 +8,73 @@ class CreateFlashcard extends Component {
         super();
         this.state = {
             speed: 10,
-            decks: [],
+            decks: {},
             deckNames: []
         };
 
         this.databaseUrl = "https://optimal-iris-238613-default-rtdb.europe-west1.firebasedatabase.app/"
         
+
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+
+        if ((this.props.user == null) && nextProps.user) {
+
+            console.log('inside receive', this.props.user, nextProps.user)
+            var tempState = this;
+
+            this.props.databaseRef.child("users").child(nextProps.user.uid).child("decks").on("value", (snap) => {
+                console.log("main user promise", snap.val())
+                
+                this.setState({decks: {}})
+    
+                if (snap.val()) {
+
+                    let deckJson = {}
+
+                    let deckIds = Object.keys(snap.val())
+                    console.log("deckIds", deckIds)
+                    deckIds.forEach(deckId=>deckJson[deckId]={})
+    
+                    tempState.setState({decks: deckJson })
+    
+                    console.log('user snap val', snap.val())
+    
+                    let userDecks = Object.keys(snap.val());
+
+                    console.log('userDecks', userDecks)
+
+                    var comp = this;
+
+    
+                    userDecks.forEach((userDeck, index) => {
+                        console.log("userdeck:", userDeck)
+    
+                        comp.props.databaseRef.child('decks').child(userDeck).once("value", snapshot => {
+                            console.log("blaaaaaaaaa", snapshot.val())
+
+
+                            let tempStateDeck = comp.state.decks
+                            tempStateDeck[userDeck] = snapshot.val()
+
+                            comp.setState({decks: tempStateDeck})
+
+                            // comp.setState({decks: [...comp.state.decks, snap.val()]})
+                            console.log('the decks state', comp.state.decks)
+                
+                        })
+    
+                    })
+
+
+
+    
+                }
+                
+            })
+        }
 
     }
 
@@ -28,19 +89,29 @@ class CreateFlashcard extends Component {
     }
 
     componentDidMount() {
+        console.log("createflashcard:", this.props)
 
-        // const deckname = this.state.decks;
 
         if (this.props.user) {
+
+            console.log('inside receive', this.props.user, this.props.user)
             var tempState = this;
 
             this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").on("value", (snap) => {
                 console.log("main user promise", snap.val())
-                tempState.setState({decks: []})
+                
 
                 console.log('user snap val', snap.val())
     
                 if (snap.val()) {
+
+                    let deckJson = {}
+
+                    let deckIds = Object.keys(snap.val())
+                    console.log("deckIds", deckIds)
+                    deckIds.forEach(deckId=>deckJson[deckId]={})
+
+                    tempState.setState({decks: deckJson })
     
                     let userDecks = Object.keys(snap.val());
 
@@ -48,65 +119,32 @@ class CreateFlashcard extends Component {
 
                     var comp = this;
     
-                    userDecks.forEach(userDeck => {
+                    userDecks.forEach((userDeck, index) => {
                         console.log("userdeck:", userDeck)
     
-                        comp.props.databaseRef.child('decks').child(userDeck).once("value", snap => {
-                            console.log("blaaaaaaaaa", snap.val())
+                        comp.props.databaseRef.child('decks').child(userDeck).once("value", snapshot => {
+                            console.log("blaaaaaaaaa", snapshot.val())
 
-                            comp.setState({decks: [...comp.state.decks, snap.val()]})
+
+                            let tempStateDeck = comp.state.decks
+                            tempStateDeck[userDeck] = snapshot.val()
+
+                            comp.setState({decks: tempStateDeck})
+
+                            // comp.setState({decks: [...comp.state.decks, snap.val()]})
                             console.log('the decks state', comp.state.decks)
-
-                
-                            // var dictionary = snap.val() 
-                
-                            // var deckname = Object.keys(dictionary).map(function(key){
-                            //     return dictionary[key];
-                            // });
-                
-                            // var deckNames = Object.keys(dictionary).map(function(key){
-                            //     return dictionary[key]['deck_name'];
-                            // });
-                
-                            // comp.setState({
-                            // decks: deckname,
-                            // deckNames : deckNames
-                
-                            // })
                 
                         })
     
                     })
-    
-                    // this.props.databaseRef.child('decks').on('value', snap => {
-                    //     console.log("in createflashcard decks: testing to see if this code worked", snap.val())
-            
-                    //     var dictionary = snap.val() 
-            
-                    //     var deckname = Object.keys(dictionary).map(function(key){
-                    //         return dictionary[key];
-                    //     });
-            
-                    //     var deckNames = Object.keys(dictionary).map(function(key){
-                    //         return dictionary[key]['deck_name'];
-                    //     });
-            
-                    //     comp.setState({
-                    //     decks: deckname,
-                    //     deckNames : deckNames
-            
-                    //     })
-            
-                    // })
-    
+
+
+
     
                 }
-    
-    
                 
             })
         }
-
         
 
         
@@ -128,7 +166,7 @@ class CreateFlashcard extends Component {
                             </div>
 
                             <div>
-                                {this.state.decks && this.state.decks.map((deck) => <  DeckItem key={deck["id"]} user={this.props.user} databaseRef={this.props.app.database(this.databaseUrl).ref()} deck={deck}/>)}
+                                {Object.keys(this.state.decks).map(key=>this.state.decks[key]) && Object.keys(this.state.decks).map(key=>this.state.decks[key]).map((deck) => <  DeckItem key={deck["id"]} user={this.props.user} databaseRef={this.props.app.database(this.databaseUrl).ref()} deck={deck}/>)}
                             </div>                                           
             </div>
         );

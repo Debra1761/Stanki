@@ -27,23 +27,26 @@ class DeckItem extends Component {
     }
 
     componentDidMount() {
-        this.props.databaseRef.child("flashcards").child(this.props.deck.deck_name).on("value", (snapshot) => {
-            console.log("blah:", snapshot.val(), this.props.deck.deck_name)
 
-            var dictionary = snapshot.val() 
+        if(this.props.deck.deck_name!==undefined) {
+            this.props.databaseRef.child("flashcards").child(this.props.deck.deck_name).on("value", (snapshot) => {
+                console.log("blah:", snapshot.val(), this.props.deck.deck_name)
 
-            if(dictionary) {
-            var deckname = Object.keys(dictionary).map(function(key){
-                return dictionary[key];
-            });
+                var dictionary = snapshot.val() 
 
-            const numFlashcards = deckname.length;
-            this.setState({numFlashcards: numFlashcards})
+                if(dictionary) {
+                var deckname = Object.keys(dictionary).map(function(key){
+                    return dictionary[key];
+                });
+
+                const numFlashcards = deckname.length;
+                this.setState({numFlashcards: numFlashcards})
+            }
+            else {
+                this.setState({numFlashcards: 0})
+            }
+            })
         }
-        else {
-            this.setState({numFlashcards: 0})
-        }
-        })
     }
 
     notification = () => {
@@ -61,8 +64,15 @@ class DeckItem extends Component {
         let deckObject = {}
         deckObject[this.props.deck.id] = null;
 
-        this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").update(deckObject)
-        this.notification()
+        var comp = this;
+
+        this.props.databaseRef.child("users").child(this.props.user.uid).child("decks").update(deckObject).then(function(){
+            console.log('update finished')
+            comp.notification()
+          }).catch(function(error) {
+            // alert("Data could not be saved." + error);
+          });
+        
     }
 
     showcardsnow = () => {
